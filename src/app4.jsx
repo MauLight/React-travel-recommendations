@@ -5,7 +5,7 @@ import { User } from './user';
 
 const RecommendationCard = () => {
 
-    //CCS STYLES
+//CCS STYLES
 
     const style = {
         width: "18rem",
@@ -26,11 +26,11 @@ const RecommendationCard = () => {
         objectPosition: 'top'
     }
 
-    //IMPORTED USER:
-
-    //IMPORTED ACTIVITY ARRAYS:
+//ACTIVITY STATE:
 
     const [activity, setActivity] = useState(activities);
+
+//USER FILTER FUNCTION
 
     const userFilter = (elem) => {
         if (elem.city_id === User.city) {
@@ -43,32 +43,10 @@ const RecommendationCard = () => {
     const userActivity = activity.filter(userFilter);
     const userAllActivity = activities.filter(userFilter);
 
-
-    //FILTER FUNCTIONS:
-
-    /*
-    const filterFunction = (elem) => {
-        if (elem.activity == value) {
-            return elem;
-        }
-        else {
-            console.log('no matches!')
-        }
-    };
-    
-    const filter1 = ageArr.filter(filterFunction);
-    const filter2 = genderArr.filter(filterFunction);
-    const filter3 = activityArr.filter(filterFunction);
-    const filter4 = childrenArr.filter(filterFunction);
-    const filter5 = travelArr.filter(filterFunction);
-    const filter6 = stayArr.filter(filterFunction);
-    const filter7 = budgetArr.filter(filterFunction);
-    const filter8 = arr.filter(filterFunction);
-    
-    */
+//ACTIVITIES FILTER FUNCTION
 
     const handleActType = (e) => {
-        //console.log(e.target.value);
+        
         const value = e.target.value;
 
         const filterFunction = (elem) => {
