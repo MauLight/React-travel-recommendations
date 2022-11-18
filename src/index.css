@@ -4,4 +4,39 @@ body {
   background-color: #e7f9ff !important;
 }
 
+label:hover {
+  color: #94baca !important;
+}
+
+/*
+img:hover {
+  width: 120% !important;
+  height: auto;
+}
+
+.frame {
+  height: '200px';
+  width: auto;
+  overflow: hidden !important;
+}
+*/
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color:#94baca !important;
+  text-decoration: none;
+}
+
+a:link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #8d8d8d;
+}
+
 
