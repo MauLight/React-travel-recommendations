@@ -1,5 +1,7 @@
 export const User = {
-    name: "Greg",
+    firstname: "Greg",
+    lastname: 'Spears',
+    countryofresidence: 'The Moon',
     user_img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61",
     country: 2,
     city: 2,

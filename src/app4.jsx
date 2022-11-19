@@ -38,15 +38,13 @@ const RecommendationCard = () => {
         }
     };
 
-    console.log(User);
-
     const userActivity = activity.filter(userFilter);
     const userAllActivity = activities.filter(userFilter);
 
 //ACTIVITIES FILTER FUNCTION
 
     const handleActType = (e) => {
-        
+
         const value = e.target.value;
 
         const filterFunction = (elem) => {
@@ -146,9 +144,9 @@ const RecommendationCard = () => {
                 </div>
                 <div className='description-card text-center'>
                 <a className="mx-auto" href="https://rr.noordstar.me/test-109ddae8">
-                    <h3>{User.name}</h3>
+                    <h3>{User.firstname} {User.lastname}</h3>
                 </a>    
-                    <p>Goes to {User.city === 2 ? 'Buenos Aires' : 'Nowhere!'}, {User.country === 2 ? 'Argentina' : 'Nowhere!'}</p>
+                    <p>From {User.countryofresidence}</p>
                 </div>
                 <div className="offcanvas-body">
                     <div className="col mb-3">
