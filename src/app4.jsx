@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { savedActivities } from './activitiesArr';
 import { activities } from './activitiesArr2';
 import { User } from './user';
 
 
 const RecommendationCard = () => {
 
-//CCS STYLES
+    //CCS STYLES
 
     const style = {
         width: "18rem",
@@ -26,11 +27,14 @@ const RecommendationCard = () => {
         objectPosition: 'top'
     }
 
-//ACTIVITY STATE:
+    //ACTIVITY STATE:
 
     const [activity, setActivity] = useState(activities);
+    const [savedActivity, setSavedActivity] = useState([]);
+    const [saved, setSaved] = useState('');
+    const [select, setSelect] = useState('Select');
 
-//USER FILTER FUNCTION
+    //USER FILTER FUNCTION
 
     const userFilter = (elem) => {
         if (elem.city_id === User.city) {
@@ -41,7 +45,7 @@ const RecommendationCard = () => {
     const userActivity = activity.filter(userFilter);
     const userAllActivity = activities.filter(userFilter);
 
-//ACTIVITIES FILTER FUNCTION
+    //ACTIVITIES FILTER FUNCTION
 
     const handleActType = (e) => {
 
@@ -98,11 +102,34 @@ const RecommendationCard = () => {
         }
     };
 
+    //SAVE ACTIVITY FUNCTION
+
+    const handleSelected = (id) => {
+        //console.log('Hey!');
+        //console.log(savedActivities);
+        //console.log(id);
+        const chosenActivity = activities.filter(elem => elem.id === id);
+        //console.log(chosenActivity);
+        savedActivities.push(chosenActivity[0]);
+        console.log(savedActivities);
+    }
+
+    const showSelected = () => {
+        setActivity(savedActivities);
+    }
+
+    const handleSubmit = () => {
+        console.log('saved!');
+        setSaved('saved!')
+        setActivity(userAllActivity);
+    }
+
+
     return (
         <div className='container justify-content-center'>
             <h1 className='activities_title'>Activities</h1>
             <div>
-                <button className="activity_btn btn mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <button className="filters_btn btn mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     Filters
                 </button>
             </div>
@@ -124,6 +151,7 @@ const RecommendationCard = () => {
                                         <h5 className="activity_title card-title">{elem.name}</h5>
                                         <p className="card-text">{elem.description}</p>
                                         <a href="https://rr.noordstar.me/test-109ddae8" className="activity_btn btn w-100">Details</a>
+                                        <button className="activity_btn btn w-100" onClick={() => handleSelected(elem.id)}>{select}</button>
                                     </div>
                                 </div>
                             </div>
@@ -139,13 +167,13 @@ const RecommendationCard = () => {
                 </div>
                 <div className="img-card card border-0 my-3 justify-content-center">
 
-                        <img src={User.user_img} className="p-0 mx-auto" alt="..." style={rounded} />
+                    <img src={User.user_img} className="p-0 mx-auto" alt="..." style={rounded} />
 
                 </div>
                 <div className='description-card text-center'>
-                <a className="mx-auto" href="https://rr.noordstar.me/test-109ddae8">
-                    <h3>{User.firstname} {User.lastname}</h3>
-                </a>    
+                    <a className="mx-auto" href="https://rr.noordstar.me/test-109ddae8">
+                        <h3>{User.firstname} {User.lastname}</h3>
+                    </a>
                     <p>From {User.countryofresidence}</p>
                 </div>
                 <div className="offcanvas-body">
@@ -177,7 +205,17 @@ const RecommendationCard = () => {
                         </div>
 
                     </div>
-                    
+                    <div className='mx-auto d-flex justify-content-center'>
+                        <button className="activity_btn btn w-50" onClick={showSelected}>Show selected items</button>
+                    </div>
+                    <div className='mx-auto d-flex justify-content-center'>
+                        <button className="save_btn btn w-50" onClick={handleSubmit}>Save selected items</button>
+
+                    </div>
+                    <div className='mx-auto d-flex justify-content-center'>
+                        <p>{saved}</p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -185,3 +223,4 @@ const RecommendationCard = () => {
 }
 
 export default RecommendationCard;
+
