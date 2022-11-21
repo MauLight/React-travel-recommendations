@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { savedActivities } from './activitiesArr';
 import { activities } from './activitiesArr2';
-import { User } from './user';
+import { User, userTrips } from './user';
 
 
 const RecommendationCard = () => {
@@ -33,16 +33,17 @@ const RecommendationCard = () => {
     const [savedActivity, setSavedActivity] = useState([]);
     const [saved, setSaved] = useState('');
     const [select, setSelect] = useState('Select');
+    const [userTrip, setUserTrip] = useState('');
 
     //USER FILTER FUNCTION
 
     const userFilter = (elem) => {
-        if (elem.city_id === User.city) {
+        if (elem.city_id === userTrip.id) {
             return elem;
         }
     };
 
-    const userActivity = activity.filter(userFilter);
+    const userActivity = activity ? activity.filter(userFilter) : activities;
     const userAllActivity = activities.filter(userFilter);
 
     //ACTIVITIES FILTER FUNCTION
@@ -121,7 +122,16 @@ const RecommendationCard = () => {
     const handleSubmit = () => {
         console.log('saved!');
         setSaved('saved!')
-        setActivity(userAllActivity);
+        setActivity(activities);
+    }
+
+    const handleTrip = (id) => {
+        console.log(id);
+        console.log('hey!')
+        const tripArr = userTrips.createtrips;
+        const filterTrip = tripArr.filter((elem) => elem.id === id);
+        setUserTrip(filterTrip[0]);
+        console.log(filterTrip[0]);
     }
 
 
@@ -129,9 +139,29 @@ const RecommendationCard = () => {
         <div className='container justify-content-center'>
             <h1 className='activities_title'>Activities</h1>
             <div>
-                <button className="filters_btn btn mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <button className="filters_btn btn btn-sm mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     Filters
                 </button>
+            </div>
+            <div class="btn-group mb-5">
+                <button className="filters_btn btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select trip
+                </button>
+                <ul className="dropdown-menu">
+                    {
+                        !!userTrips.createtrips && userTrips.createtrips.length > 0 ? (
+                            userTrips.createtrips.map((elem, i) => {
+                                return (
+                                    <li className='trip_list btn p-1 m-0 w-100 border-0 rounded-0 list-item' key={i} onClick={() => handleTrip(elem.id)} >
+                                        <small>{elem.capital_trip}, {elem.country_trip}</small>
+                                    </li>
+                                )
+                            })
+                        ) : (
+                            <p>No trips added</p>
+                        )
+                    }
+                </ul>
             </div>
             <div className='row mx-auto'>
                 {
@@ -150,7 +180,6 @@ const RecommendationCard = () => {
 
                                         <h5 className="activity_title card-title">{elem.name}</h5>
                                         <p className="card-text">{elem.description}</p>
-                                        <a href="https://rr.noordstar.me/test-109ddae8" className="activity_btn btn w-100">Details</a>
                                         <button className="activity_btn btn w-100" onClick={() => handleSelected(elem.id)}>{select}</button>
                                     </div>
                                 </div>
@@ -210,7 +239,6 @@ const RecommendationCard = () => {
                     </div>
                     <div className='mx-auto d-flex justify-content-center'>
                         <button className="save_btn btn w-50" onClick={handleSubmit}>Save selected items</button>
-
                     </div>
                     <div className='mx-auto d-flex justify-content-center'>
                         <p>{saved}</p>

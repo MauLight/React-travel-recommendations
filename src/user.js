@@ -21,3 +21,64 @@ export const User = {
         malls: false
     }]
 }
+
+export const userTrips = 
+    {
+        firstname: "Greg",
+        lastname: 'Spears',
+        countryofresidence: 'The Moon',
+        createtrips: [
+            {
+                capital_trip: 'Buenos Aires',
+                country_trip: 'Argentina',
+                id: 1
+            },
+            {
+                capital_trip: 'Brasilia',
+                country_trip: 'Brazil',
+                id: 2
+            },
+            {
+                capital_trip: 'Santiago',
+                country_trip: 'Chile',
+                id: 3
+            },
+            {
+                capital_trip: 'Bogota',
+                country_trip: 'Colombia',
+                id: 4
+            },
+            {
+                capital_trip: 'Mexico D.F.',
+                country_trip: 'Mexico',
+                id: 5
+            },
+            {
+                capital_trip: 'Athens',
+                country_trip: 'Greece',
+                id: 6
+            },
+            {
+                capital_trip: 'Rome',
+                country_trip: 'Italy',
+                id: 7
+            },
+            {
+                capital_trip: 'Madrid',
+                country_trip: 'Spain',
+                id: 8
+            },
+            
+            {
+                capital_trip: 'London',
+                country_trip: 'England',
+                id: 9
+            },
+            {
+                capital_trip: 'Paris',
+                country_trip: 'France',
+                id: 10
+            }
+        ]
+
+    }

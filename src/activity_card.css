@@ -36,6 +36,11 @@
     color: #e7f9ff !important;
   }  
 
+  .trip_list:hover {
+    background-color:#5d8ca4 !important;
+    color: #e7f9ff !important;
+  }  
+
   .card {
     overflow: hidden;
   }
